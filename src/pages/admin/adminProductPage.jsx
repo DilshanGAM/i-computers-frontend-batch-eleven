@@ -118,7 +118,7 @@ export default function AdminProductsPage() {
 	return (
 		<div className="w-full h-full ">
 			{products.map((product, index) => {
-				toast.success(product.productId + "-" + index);
+				// toast.success(product.productId + "-" + index);
 
 				return (
 					<div key={product.productId}>
