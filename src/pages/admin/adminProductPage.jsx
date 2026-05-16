@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import api from "../../utils/api";
 import LoadingScreen from "../../components/loadingScreen";
 import ProductDeleteButton from "../../components/productDeleteButton";
+import { CiEdit } from "react-icons/ci";
+import getFormattedPrice from "../../utils/price-formatter";
 
 const sampleProducts = [
 	{
@@ -177,8 +179,8 @@ export default function AdminProductsPage() {
 								</td>
 								<td>{product.productId}</td>
 								<td>{product.name}</td>
-								<td>{product.price}</td>
-								<td>{product.labelledPrice}</td>
+								<td>{getFormattedPrice(product.price)}</td>
+								<td>{getFormattedPrice(product.labelledPrice)}</td>
 								<td>{product.brand}</td>
 								<td>{product.model}</td>
 								<td>{product.category}</td>
@@ -186,6 +188,7 @@ export default function AdminProductsPage() {
 								<td>{product.stock}</td>
 								<td>
 									<div className="w-full flex justify-center items-center gap-4">
+										<Link to="/admin/edit-product" state={product} ><CiEdit className="text-blue-600 text-xl rounded-full hover:border cursor-pointer " /></Link>
 										<ProductDeleteButton productId={product.productId} refresh={()=>setLoading(true)} />
 									</div>
 								</td>
