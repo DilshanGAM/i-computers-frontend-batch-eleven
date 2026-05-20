@@ -4,7 +4,7 @@ import api from "../utils/api"
 import LoadingScreen from "../components/loadingScreen"
 import ProductImageSlideShow from "../components/productImageSlideShow"
 import getFormattedPrice from "../utils/price-formatter"
-import { addToCart, getCart } from "../utils/cart"
+import { addToCart } from "../utils/cart"
 import toast from "react-hot-toast"
 
 export default function ProductOverview(){
