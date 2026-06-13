@@ -16,7 +16,7 @@ export default function CheckoutPage(){
                 cart.map(
                     (cartItem, index) => {
                         return (
-                            <div className="w-[600px] h-[150px]  shadow-2xl bg-white my-4 flex flex-row relative" key={index}>
+                            <div className="w-[400px] lg:w-[600px] h-[250px] lg:h-[150px]  shadow-2xl bg-white my-4 flex flex-row relative" key={index}>
                                 <img src={cartItem.product.image} className="h-full aspect-square"/>
                             
                                 <div className="h-full  w-[450px] flex flex-col  p-4">
@@ -69,11 +69,11 @@ export default function CheckoutPage(){
                 )
             }
 
-            <div className="w-[600px] h-[150px] sticky bottom-0  shadow-2xl bg-white my-4 flex flex-row items-center justify-between p-4">
+            <div className="w-[400px] lg:w-[600px] h-[150px] sticky bottom-0  shadow-2xl bg-white my-4 flex flex-row items-center justify-between p-4">
                 <CreateOrder cart={cart} />
                 <div className="flex justify-end h-full items-center">
-                    <span className="text-gray-500 text-lg mr-4">Total:</span>
-                    <span className="text-accent text-2xl font-bold ">
+                    <span className="text-gray-500 text-lg mr-4 hidden lg:block">Total:</span>
+                    <span className="text-accent lg:text-2xl font-bold ">
                         {getFormattedPrice(getTotal(cart))}
                     </span>
                 </div>

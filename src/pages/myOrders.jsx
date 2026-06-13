@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import api from "../../utils/api";
-import LoadingScreen from "../../components/loadingScreen";
-import getFormattedPrice from "../../utils/price-formatter";
-import formatTimestamp from "../../utils/date-formatter";
-import AdminOrderDataModal from "../../components/orderDataModal";
+import api from "../utils/api";
+import LoadingScreen from "../components/loadingScreen";
+import getFormattedPrice from "../utils/price-formatter";
+import formatTimestamp from "../utils/date-formatter";
+import AdminOrderDataModal from "../components/orderDataModal";
 
 
-export default function AdminOrdersPage() {
+export default function MyOrders() {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [pageNumber, setPageNumber] = useState(1);
@@ -38,7 +38,7 @@ export default function AdminOrdersPage() {
     return (
         <div className="w-full h-full flex flex-col items-center ">
             <div className="w-full h-[100px] bg-white shadow-2xl mb-10 rounded-lg flex p-4 items-center justify-between">
-                <h1 className="text-2xl font-semibold">All Orders</h1>
+                <h1 className="text-2xl font-semibold">My Orders</h1>
                 <div className="h-full gap-4 flex items-center">
                     {totalOrders} Orders
                 </div>                
@@ -76,7 +76,7 @@ export default function AdminOrdersPage() {
                                 <td>{getFormattedPrice(order.totalAmount)}</td>
                                 <td>
                                     <div className="w-full flex justify-center items-center gap-4">
-                                        <AdminOrderDataModal isAdmin={true} order={order} refresh={() => setLoading(true)}/>
+                                        <AdminOrderDataModal isAdmin={false} order={order} refresh={() => setLoading(true)}/>
                                     </div>
                                 </td>
                             </tr>
