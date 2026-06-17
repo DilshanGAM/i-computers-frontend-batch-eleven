@@ -36,10 +36,10 @@ export default function UserData() {
     return(
         <>
         {
-            user == null?<div>
+            user == null?<div className="lg:flex ">
                 <Link to="/signin" className="text-white hidden lg:block hover:text-gray-500">Login</Link>
                 <span className="text-white hidden lg:block"> | </span>
-                <Link to="/register" className="text-white hidden lg:block hover:text-gray-500">Register</Link>               
+                <Link to="/signup" className="text-white hidden lg:block hover:text-gray-500">Register</Link>               
                 <Link to="/signin" className="h-full lg:hidden flex flex-col  justify-center items-center text-accent text-3xl  ">
                     <CiLogin />
                 <span className="text-sm text-accent">Login</span>

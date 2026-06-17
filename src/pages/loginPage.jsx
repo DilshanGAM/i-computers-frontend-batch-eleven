@@ -5,17 +5,49 @@ import { BsGoogle } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../utils/api";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function LoginPage(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
-
     const navigate = useNavigate()
+    const googleLogin = useGoogleLogin(
+        {
+            onSuccess : (response)=>{
+
+                console.log(response);
+
+                api.post("/users/google-login",{
+                    accessToken : response.access_token
+                }).then((res)=>{
+
+                    console.log(res);
+                    localStorage.setItem("token" , res.data.token)
+                    if(res.data.isAdmin){
+                        navigate("/admin")
+                    }else{
+                        navigate("/")
+                    }
+
+                }).catch((err)=>{
+                    console.log(err);
+                })
+            },
+            onError : (err)=>{
+                console.log(err);
+            }
+        }
+    )
+
+    
 
     async function handleLogin(){
-        
+
+      
         setLoading(true)
+
+        
 
         try{
             const res = await api.post("/users/login",{
@@ -84,8 +116,8 @@ export default function LoginPage(){
                         loading ? "Loading..." : "Login"
                     }
                 </button>
-                <p className="w-full h-2 text-white text-right italic ">Don't have an account? click <Link to="/register" className="font-bold text-accent">Here</Link> </p>
-                <button className="w-full h-[50px] bg-secondary mt-5 text-white rounded-lg flex justify-center items-center gap-2"><BsGoogle/> Sign In with Google</button>
+                <p className="w-full h-2 text-white text-right italic ">Don't have an account? click <Link to="/signup" className="font-bold text-accent">Here</Link> </p>
+                <button onClick={googleLogin} className="w-full h-[50px] bg-secondary mt-5 text-white rounded-lg flex justify-center items-center gap-2"><BsGoogle/> Sign In with Google</button>
             </div>
         </div>
     )
