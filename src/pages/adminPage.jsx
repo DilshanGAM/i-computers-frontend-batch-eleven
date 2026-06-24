@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import api from "../utils/api";
 import toast from "react-hot-toast";
 import LoadingScreen from "../components/loadingScreen";
+import AdminUsersPage from "./admin/adminUsersPage";
 
 export default function AdminPage(){
 
@@ -79,7 +80,7 @@ export default function AdminPage(){
                 <Routes>
                     <Route path="/" element={<AdminOrdersPage/>}/>
                     <Route path="/products" element={<AdminProductsPage/>}/>
-                    <Route path="/users" element={<h1>Users Page</h1>}/>
+                    <Route path="/users" element={<AdminUsersPage/>}/>
                     <Route path="/add-product" element={<AdminAddProductForm/>}/>
                     <Route path="/edit-product" element={<AdminEditProductForm/>}/>
                 </Routes>}
